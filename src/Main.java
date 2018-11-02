@@ -1,16 +1,24 @@
-import analyzer.ClassicBSPerformance;
-import output.ClassicBSOutput;
+import analyzer.SortAnalyzer;
+import output.PerformanceOutput;
 import sorters.*;
 import fillers.*;
-
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         BubbleSortClassic bubbleSortClassic = new BubbleSortClassic();
-        Fillers filler = new Fillers(30);
-        ClassicBSPerformance performance = new ClassicBSPerformance(bubbleSortClassic, filler);
-        ClassicBSOutput outputer = new ClassicBSOutput(performance);
-        outputer.output();
+        BubbleSortReversed bubbleSortReversed = new BubbleSortReversed();
+        QuickSort quickSort = new QuickSort();
+        BuiltInSort builtInSort = new BuiltInSort();
+
+        Fillers filler = new Fillers(100);
+
+        SortAnalyzer sortAnalyzer = new SortAnalyzer(filler);
+
+        PerformanceOutput performance = new PerformanceOutput(sortAnalyzer);
+
+        performance.output(bubbleSortClassic);
+        performance.output(bubbleSortReversed);
+        performance.output(quickSort);
+        performance.output(builtInSort);
     }
 }

@@ -1,5 +1,7 @@
 package output;
 
+import sorters.Sort;
+
 public interface Outputer {
-    void output();
+    void output(Sort sortType);
 }

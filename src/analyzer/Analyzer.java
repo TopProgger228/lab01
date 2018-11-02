@@ -1,11 +1,14 @@
 package analyzer;
 
+import fillers.Fillers;
+import sorters.Sort;
+
 public interface Analyzer {
-    long getPerformanceForSortedArray();
+    long getPerformanceForSortedArray(Sort sortType);
 
-    long  getPerformanceForArrayWithAddedElement();
+    long getPerformanceForArrayWithAddedElement(Sort sortType);
 
-    long getPerformanceForReversedArray();
+    long getPerformanceForReversedArray(Sort sortType);
 
-    long getPerformanceForRandomArray();
+    long getPerformanceForRandomArray(Sort sortType);
 }

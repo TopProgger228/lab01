@@ -1,24 +1,34 @@
+import analyzer.Analyzer;
 import analyzer.SortAnalyzer;
+import output.Outputer;
 import output.PerformanceOutput;
 import sorters.*;
 import fillers.*;
 
 public class Main {
     public static void main(String[] args) {
-        BubbleSortClassic bubbleSortClassic = new BubbleSortClassic();
-        BubbleSortReversed bubbleSortReversed = new BubbleSortReversed();
-        QuickSort quickSort = new QuickSort();
-        BuiltInSort builtInSort = new BuiltInSort();
+        Sort classicBubbleSort = new BubbleSortClassic();
+        Sort reversedBubbleSort = new BubbleSortReversed();
+        Sort quickSort = new QuickSort();
+        Sort builtInSort = new BuiltInSort();
+        Sort mergeSortWithClassicBubbleSort = new MergeSort(classicBubbleSort);
+        Sort mergeSortWithReversedBubbleSort = new MergeSort(reversedBubbleSort);
+        Sort mergeWithQuickSort = new MergeSort(quickSort);
+        Sort mergeWithBuiltInSort = new MergeSort(builtInSort);
 
         Fillers filler = new Fillers(100);
 
-        SortAnalyzer sortAnalyzer = new SortAnalyzer(filler);
+        Analyzer analyzer = new SortAnalyzer(filler);
 
-        PerformanceOutput performance = new PerformanceOutput(sortAnalyzer);
+        Outputer performance = new PerformanceOutput(analyzer);
 
-        performance.output(bubbleSortClassic);
-        performance.output(bubbleSortReversed);
+        performance.output(classicBubbleSort);
+        performance.output(reversedBubbleSort);
         performance.output(quickSort);
         performance.output(builtInSort);
+        performance.output(mergeSortWithClassicBubbleSort);
+        performance.output(mergeSortWithReversedBubbleSort);
+        performance.output(mergeWithQuickSort);
+        performance.output(mergeWithBuiltInSort);
     }
 }

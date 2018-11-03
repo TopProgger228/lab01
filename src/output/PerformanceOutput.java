@@ -1,12 +1,12 @@
 package output;
 
-import analyzer.SortAnalyzer;
+import analyzer.Analyzer;
 import sorters.*;
 
 public class PerformanceOutput implements Outputer {
-    private SortAnalyzer sortAnalyzer;
+    private Analyzer sortAnalyzer;
 
-    public PerformanceOutput(SortAnalyzer sortAnalyzer){
+    public PerformanceOutput(Analyzer sortAnalyzer){
         this.sortAnalyzer = sortAnalyzer;
     }
 
@@ -24,6 +24,10 @@ public class PerformanceOutput implements Outputer {
       }else if (sortType instanceof BuiltInSort){
           System.out.println("Performance of built-in sort:");
           getPerformanceInfo(sortType);
+      }else if (sortType instanceof MergeSort){
+          var sortName = ((MergeSort)sortType).getSortTypeForMergeSort().getClass().getName();
+          System.out.println("Performance of merge sort with " + sortName);
+          getPerformanceInfo(sortType);
       }
     }
 
@@ -40,4 +44,5 @@ public class PerformanceOutput implements Outputer {
         System.out.println("Method takes random array -->" + " " +
                 sortAnalyzer.getPerformanceForRandomArray(sortType) + " " + "nanoseconds");
     }
+
 }

@@ -1,6 +1,19 @@
 package sorters;
 
+/**
+ * <b>QuickSort</b> class that implements {@link sorters.Sort} interface.
+ * This class presents quicksort (Hoare algorithm) realization.
+ * Class is declared as final.
+ * @author Dmytro Pylypyuk.
+ * @version 1.0
+ */
 public final class QuickSort implements Sort {
+    /**
+     * Overrided version of {@link sorters.Sort#sort(int[])} method.
+     * This method sorts array using quicksort.
+     * Takes @param array, array of integers, which user want to sort.
+     * Invokes auxiliary method {@link sorters.QuickSort#doSort(int[], int, int)}.
+     */
     @Override
     public void sort(int[] array) {
         int startIndex = 0;
@@ -8,6 +21,21 @@ public final class QuickSort implements Sort {
         doSort(array, startIndex, endIndex);
     }
 
+    /**
+     * @return name of sort.
+     */
+    @Override
+    public String getSortName() {
+        return "Quick sort";
+    }
+
+    /**
+     * Auxiliary method for {@link sorters.QuickSort#sort(int[])} method.
+     * Contains logic of quicksort algorithm.
+     * Takes @param array, array of integers, which user want to sort.
+     * Parameter @param start is first index of array.
+     * Parameter @param end is last index of array.
+     */
     private static void doSort(int[] array, int start, int end) {
         if (start >= end)
             return;

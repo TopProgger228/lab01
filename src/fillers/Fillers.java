@@ -3,14 +3,34 @@ package fillers;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Fillers extends FillersTemplate{
+/**
+ * <b>Fillers</b> class that implements {@link Filler} interface.
+ * This class presents four overrided methods for different ways to fill arrays.
+ * Class is not declared as final for possible extension.
+ * @author Dmytro Pylypyuk.
+ * @version 1.0
+ */
+public class Fillers implements Filler{
+    /**
+     *<b>private int</b> {@link Fillers#arraySize} field defines size of array that will be created.
+     */
     private int arraySize;
     private Random random = new Random();
 
+    /**
+     * Constructor takes and initializes parameter @param arraySize.
+     */
     public Fillers(int arraySize) {
         this.arraySize = arraySize;
     }
 
+    /**
+     * Overrided version of {@link Filler#generateSortedArray()} method.
+     * Generates array of pseudorandom integers with {@link Fillers#arraySize} size
+     * and sorts by invoking {@link Arrays#sort(int[])} method.
+     * For generating uses {@link Random}.
+     * @return sorted array of integers.
+     */
     @Override
     public int[] generateSortedArray() {
         int[] array = new int[arraySize];
@@ -23,6 +43,13 @@ public class Fillers extends FillersTemplate{
         return array;
     }
 
+    /**
+     * Overrided version of {@link Filler#generateSortedArrayWithAddedElement()} method.
+     * Generates array of pseudorandom integers with {@link Fillers#arraySize} size,
+     * sorts by invoking {@link Arrays#sort(int[])} method and adds pseudorandom integer element in the end of array.
+     * For generating uses {@link Random}.
+     * @return sorted array of integers with added element.
+     */
     @Override
     public int[] generateSortedArrayWithAddedElement() {
        int[] array = new int[arraySize + 1];
@@ -37,6 +64,12 @@ public class Fillers extends FillersTemplate{
        return array;
     }
 
+    /**
+     * Overloaded version of {@link Fillers#generateSortedArrayWithAddedElement()}.
+     * Method takes @param element. User can set element manually using this method.
+     * For generating uses {@link Random}.
+     * @return sorted array of integers with added element.
+     */
     public int[] generateSortedArrayWithAddedElement(int element){
         int[] array = new int[arraySize + 1];
 
@@ -50,6 +83,13 @@ public class Fillers extends FillersTemplate{
         return array;
     }
 
+    /**
+     * Overrided version of {@link Fillers#generateReversedArray()} method.
+     * Generates array of pseudorandom integers with {@link Fillers#arraySize} size
+     * using {@link Fillers#generateRandomArray()} and reverse it.
+     * For generating uses {@link Random}.
+     * @return reversed sorted array of integers.
+     */
     @Override
     public int[] generateReversedArray() {
        Fillers filler = new Fillers(arraySize);
@@ -69,6 +109,11 @@ public class Fillers extends FillersTemplate{
         return array;
     }
 
+    /**
+     * Generates array of pseudorandom integers with {@link Fillers#arraySize} size.
+     * For generating uses {@link Random}.
+     * @return array of pseudorandom integers.
+     */
     @Override
     public int[] generateRandomArray() {
         int[] array = new int[arraySize];

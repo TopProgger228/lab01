@@ -4,10 +4,11 @@ package sorters;
  * <b>BubbleSortReversed</b> class that implements {@link sorters.Sort} interface.
  * This class presents bubble sort realization when current element goes down.
  * Class is declared as final.
+ *
  * @author Dmytro Pylypyuk.
  * @version 1.0
  */
-public final class BubbleSortReversed implements Sort{
+public final class BubbleSortReversed implements Sort {
     /**
      * Overrided version of {@link sorters.Sort#sort(int[])} method.
      * This method sorts array using bubble sort algorithm, but current element goes down.
@@ -25,6 +26,7 @@ public final class BubbleSortReversed implements Sort{
             }
         }
     }
+
     /**
      * @return name of sort.
      */

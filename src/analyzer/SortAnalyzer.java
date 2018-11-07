@@ -8,25 +8,24 @@ import sorters.Sort;
  * This class presents four overrided methods for performance measuring for
  * different filling ways.
  * All methods use {@link System#nanoTime()} to measure time.
+ *
  * @author Dmytro Pylypyuk.
  * @version 1.0
  */
 public class SortAnalyzer implements Analyzer {
-    /**
-     * <b>private Filler</b> field.
-     */
     private Filler filler;
 
     /**
      * Constructor takes and initializes parameter @param filler.
      */
-    public SortAnalyzer(Filler filler){
+    public SortAnalyzer(Filler filler) {
         this.filler = filler;
     }
 
     /**
      * Overrided version of {@link Analyzer#getPerformanceForSortedArray(Sort)} method.
      * Method measures performance for @param sortType type of sort when array is sorted.
+     *
      * @return time in nanoseconds.
      */
     @Override
@@ -42,6 +41,7 @@ public class SortAnalyzer implements Analyzer {
      * Overrided version of {@link Analyzer#getPerformanceForArrayWithAddedElement(Sort)} method.
      * Method measures performance for @param sortType type of sort when array is sorted and have
      * added element in the end.
+     *
      * @return time in nanoseconds.
      */
     @Override
@@ -56,6 +56,7 @@ public class SortAnalyzer implements Analyzer {
     /**
      * Overrided version of {@link Analyzer#getPerformanceForReversedArray(Sort)} method.
      * Method measures performance for @param sortType type of sort when array is sorted and reversed.
+     *
      * @return time in nanoseconds.
      */
     @Override
@@ -70,6 +71,7 @@ public class SortAnalyzer implements Analyzer {
     /**
      * Overrided version of {@link Analyzer#getPerformanceForRandomArray(Sort)} method.
      * Method measures performance for @param sortType type of sort when array is full of random elements.
+     *
      * @return time in nanoseconds.
      */
     @Override

@@ -6,6 +6,7 @@ package sorters;
  * types for subarrays. This types presented in classes {@link BubbleSortClassic},
  * {@link BubbleSortReversed}, {@link QuickSort}, {@link BuiltInSort}.
  * Class is not declared as final for possible extension.
+ *
  * @author Dmytro Pylypyuk.
  * @version 1.3
  */
@@ -17,9 +18,9 @@ public class MergeSort implements Sort {
     private Sort sortTypeForMergeSort;
 
     /**
-     *Constructor takes and initializes parameter @param sortTypeForMergeSort.
+     * Constructor takes and initializes parameter @param sortTypeForMergeSort.
      */
-    public MergeSort(Sort sortTypeForMergeSort){
+    public MergeSort(Sort sortTypeForMergeSort) {
         this.sortTypeForMergeSort = sortTypeForMergeSort;
     }
 
@@ -40,12 +41,11 @@ public class MergeSort implements Sort {
             sort(secondPart);
 
             merge(array, firstPart, secondPart);
-        }
-        else
-        {
+        } else {
             sortTypeForMergeSort.sort(array);
         }
     }
+
     /**
      * @return name of sort.
      */
@@ -57,9 +57,10 @@ public class MergeSort implements Sort {
     /**
      * Auxiliary method that checks possibility of array division.
      * Takes @param array, array of integers, which user want to sort.
+     *
      * @return <b>true</b> if division is possible, else return <b>false</b>.
      */
-    private boolean getDivideCriterion(int[] array){
+    private boolean getDivideCriterion(int[] array) {
         return array.length > 4;
     }
 
@@ -68,12 +69,13 @@ public class MergeSort implements Sort {
      * Takes @param array, array of integers, which user want to sort.
      * Method use parameter @param partToReturn to choose part of divided array. Should equals 1 or 2.
      * If @param partToReturn not equals 1 or 2 method returns array back.
+     *
      * @return part of divided array.
      */
-    private int[] divideArray(int[] array, int partToReturn){
-       int middle;
-       int[] firstPart;
-       int[] secondPart;
+    private int[] divideArray(int[] array, int partToReturn) {
+        int middle;
+        int[] firstPart;
+        int[] secondPart;
 
         if (array.length % 2 == 0) {
             middle = array.length / 2;
@@ -93,11 +95,11 @@ public class MergeSort implements Sort {
             secondPart[i - firstPart.length] = array[i];
         }
 
-        if (partToReturn == 1){
+        if (partToReturn == 1) {
             return firstPart;
-        }else if (partToReturn == 2){
+        } else if (partToReturn == 2) {
             return secondPart;
-        }else return array;
+        } else return array;
     }
 
     /**
@@ -106,7 +108,7 @@ public class MergeSort implements Sort {
      * Parameter @param firstPart is first part of array.
      * Parameter @param secondPart is second part of array.
      */
-    private void merge(int[] array, int[] firstPart, int[] secondPart){
+    private void merge(int[] array, int[] firstPart, int[] secondPart) {
         int i = 0;
         int j = 0;
 
@@ -133,6 +135,7 @@ public class MergeSort implements Sort {
 
     /**
      * Getter method.
+     *
      * @return type of sort for subarrays.
      */
     public Sort getSortTypeForMergeSort() {

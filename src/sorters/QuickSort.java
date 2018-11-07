@@ -4,6 +4,7 @@ package sorters;
  * <b>QuickSort</b> class that implements {@link sorters.Sort} interface.
  * This class presents quicksort (Hoare algorithm) realization.
  * Class is declared as final.
+ *
  * @author Dmytro Pylypyuk.
  * @version 1.0
  */
@@ -59,6 +60,6 @@ public final class QuickSort implements Sort {
             }
         }
         doSort(array, start, cur);
-        doSort(array, cur+1, end);
+        doSort(array, cur + 1, end);
     }
 }

@@ -6,6 +6,7 @@ package fillers;
 public interface Filler {
     /**
      * Method <b>generateSortedArray()</b> must be overrided in classes that implement <b>Filler</b> interface.
+     *
      * @return array of integers.
      */
     int[] generateSortedArray();
@@ -13,18 +14,21 @@ public interface Filler {
     /**
      * Method <b>generateSortedArrayWithAddedElement()</b> must be overrided in classes
      * that implement <b>Filler</b> interface.
+     *
      * @return array of integers.
      */
     int[] generateSortedArrayWithAddedElement();
 
     /**
      * Method <b>generateReversedArray()</b> must be overrided in classes that implement <b>Filler</b> interface.
+     *
      * @return array of integers.
      */
     int[] generateReversedArray();
 
     /**
-     *  Method <b>generateRandomArray()</b> must be overrided in classes that implement <b>Filler</b> interface.
+     * Method <b>generateRandomArray()</b> must be overrided in classes that implement <b>Filler</b> interface.
+     *
      * @return array of integers.
      */
     int[] generateRandomArray();

@@ -4,6 +4,7 @@ package sorters;
  * <b>BubbleSortClassic</b> class that implements {@link sorters.Sort} interface.
  * This class presents classic bubble sort realization.
  * Class is declared as final.
+ *
  * @author Dmytro Pylypyuk.
  * @version 1.0
  */
@@ -25,6 +26,7 @@ public final class BubbleSortClassic implements Sort {
             }
         }
     }
+
     /**
      * @return name of sort.
      */

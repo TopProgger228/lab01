@@ -12,12 +12,13 @@ import java.util.Random;
  * @version 1.0
  */
 public class Fillers implements Filler {
-    /**
-     * <b>private int</b> {@link Fillers#arraySize} field defines size of array that will be created.
-     */
+    private static final int DEFAULT_ARRAY_SIZE = 100;
     private int arraySize;
     private Random random = new Random();
 
+    public Fillers(){
+        this.arraySize = DEFAULT_ARRAY_SIZE;
+    }
     /**
      * Constructor takes and initializes parameter @param arraySize.
      */

@@ -19,7 +19,7 @@ public class Main {
         Sort mergeSortWithQuickSort = new MergeSort(quickSort);
         Sort mergeSortWithBuiltInSort = new MergeSort(builtInSort);
 
-        Filler filler = new Fillers(100);
+        Filler filler = new Fillers(1000);
 
         Analyzer analyzer = new SortAnalyzer(filler);
 

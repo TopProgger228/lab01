@@ -16,9 +16,13 @@ public class Fillers implements Filler {
     private int arraySize;
     private Random random = new Random();
 
-    public Fillers(){
+    /**
+     * Empty constructor initialize default array size that equals 100.
+     */
+    public Fillers() {
         this.arraySize = DEFAULT_ARRAY_SIZE;
     }
+
     /**
      * Constructor takes and initializes parameter @param arraySize.
      */

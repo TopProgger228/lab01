@@ -4,12 +4,15 @@ import sorters.AbstractSorter;
 import fillers.*;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException,
+            InvocationTargetException {
         Reflections reflections = new Reflections("sorters");
         Set<Class<? extends AbstractSorter>> set = reflections.getSubTypesOf(AbstractSorter.class);
 
@@ -21,6 +24,9 @@ public class Main {
 
         for (Method method : methods){
             System.out.println(method.getName());
+            Object obarray = method.invoke(null, 10);
+            int[] array = (int[]) obarray;
+            System.out.println(Arrays.toString(array));
         }
     }
 }

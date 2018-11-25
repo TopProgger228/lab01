@@ -1,6 +1,7 @@
 package sorters;
 
-public class BubbleSortReversed extends BubbleSorter {
+@SortAnnotation
+public final class BubbleSortReversed extends BubbleSorter {
     @Override
     public void sort(int[] array) {
         for (int i = array.length - 1; i > 0; i--) {

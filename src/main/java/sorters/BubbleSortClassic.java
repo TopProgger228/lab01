@@ -1,5 +1,6 @@
 package sorters;
 
+@SortAnnotation
 public final class BubbleSortClassic extends BubbleSorter {
     @Override
     public void sort(int[] array) {

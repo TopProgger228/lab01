@@ -1,5 +1,6 @@
 package sorters;
 
+@SortAnnotation
 public class QuickSort extends AbstractSorter {
     @Override
     public void sort(int[] array) {

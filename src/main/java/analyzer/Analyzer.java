@@ -1,4 +1,5 @@
 package analyzer;
 
-public class Analyzer {
+public interface Analyzer {
+    public void analyze();
 }

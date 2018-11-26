@@ -69,6 +69,32 @@ public class SortAnalyzer implements Analyzer {
             }
         }
 
+        ArrayList<AbstractSorter> sorts = new ArrayList<AbstractSorter>();
+        ArrayList<String> mergeClassNames = new ArrayList<String>();
+        ArrayList<String> sortsNames = new ArrayList<String>();
 
+        for (Class<? extends AbstractSorter> clazz : mergeSortClassesArray){
+            Constructor<? extends AbstractSorter> constructor = clazz.getConstructor(AbstractSorter.class);
+            mergeClassNames.add(clazz.getName());
+            for (Class<? extends AbstractSorter> sort : sortClassesArray){
+                Constructor<? extends AbstractSorter> sortConstructor = sort.getConstructor();
+                AbstractSorter object = sortConstructor.newInstance();
+                sortsNames.add(object.getClass().getName());
+                sorts.add(constructor.newInstance(object));
+            }
+        }
+
+        for (String mergeName : mergeClassNames){
+            for (int i = 0; i < sorts.size(); i++){
+                for (Method method : fillersMethods){
+                    Object obArray = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), arraySize);
+                    int[] array = (int[]) obArray;
+                    sorts.get(i).sort(array);
+                    System.out.println(mergeName + " " + "with" + " " + sortsNames.get(i) + " " +
+                            method.getName());
+                    System.out.println(Arrays.toString(array));
+                }
+            }
+        }
     }
 }

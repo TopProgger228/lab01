@@ -1,6 +1,6 @@
 package sorters;
 
-@SortAnnotation
+@SortAnnotation(nameOfSort = "Reversed bubble sort")
 public final class BubbleSortReversed extends BubbleSorter {
     @Override
     public void sort(int[] array) {

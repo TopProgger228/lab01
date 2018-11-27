@@ -10,7 +10,7 @@ public class Fillers {
 
     private Fillers(){}
 
-    @FillerAnnotation
+    @FillerAnnotation(nameOfFiller = "Sorted array")
     public static int[] generateSortedArray(int arraySize) throws WrongArraySize {
         if (arraySize > 0){
             int[] array = new int[arraySize];
@@ -26,7 +26,7 @@ public class Fillers {
         }
     }
 
-    @FillerAnnotation
+    @FillerAnnotation(nameOfFiller = "Sorted array with added element")
     public static int[] generateSortedArrayWithAddedElement(int arraySize) throws WrongArraySize {
         if (arraySize > 0){
             int[] array = new int[arraySize + 1];
@@ -44,7 +44,7 @@ public class Fillers {
         }
     }
 
-    @FillerAnnotation
+    @FillerAnnotation(nameOfFiller = "Reversed array")
     public static int[] generateReversedArray(int arraySize) throws WrongArraySize{
         if (arraySize > 0){
             int[] array = Fillers.generateRandomArray(arraySize);
@@ -65,7 +65,7 @@ public class Fillers {
         }
     }
 
-    @FillerAnnotation
+    @FillerAnnotation(nameOfFiller = "Random array")
     public static int[] generateRandomArray(int arraySize) throws WrongArraySize {
         if (arraySize > 0){
             int[] array = new int[arraySize];

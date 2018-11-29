@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 
-public class SortAnalyzer extends Analyzer {
+public class SortAnalyzer {
     public void analyze(int[] arraySizes) throws NoSuchMethodException, InstantiationException,
             IllegalAccessException, InvocationTargetException {
         Reflections reflections = new Reflections("sorters");
@@ -52,10 +52,6 @@ public class SortAnalyzer extends Analyzer {
         }
 
         int[] sizes = Analyzer.generateArraySizes(10);
-
-        for (int i = 0; i < sizes.length; i++){
-
-        }
 
 //        for (Class<? extends AbstractSorter> clazz : sortClassesArray){
 //            System.out.println("Sorting class name" + " " + clazz.getName());

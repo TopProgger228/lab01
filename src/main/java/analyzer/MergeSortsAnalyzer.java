@@ -29,17 +29,17 @@ public class MergeSortsAnalyzer extends Analyzer {
         ArrayList<AbstractSorter> sortsObjects = new ArrayList<AbstractSorter>();
         ArrayList<AbstractSorter> mergeSortsObjects = new ArrayList<AbstractSorter>();
 
-        for (Class<? extends AbstractSorter> clazz : sortsArrayList){
+        for (Class<? extends AbstractSorter> clazz : sortsArrayList) {
             Constructor<? extends AbstractSorter> constructor = clazz.getConstructor();
             AbstractSorter object = constructor.newInstance();
 
             sortsObjects.add(object);
         }
 
-        for (Class<? extends AbstractSorter> clazz : mergeSortsArrayList){
+        for (Class<? extends AbstractSorter> clazz : mergeSortsArrayList) {
             Constructor<? extends AbstractSorter> constructor = clazz.getConstructor(AbstractSorter.class);
 
-            for (AbstractSorter sortObject : sortsObjects){
+            for (AbstractSorter sortObject : sortsObjects) {
                 AbstractSorter mergeSortObject = constructor.newInstance(sortObject);
                 mergeSortsObjects.add(mergeSortObject);
             }

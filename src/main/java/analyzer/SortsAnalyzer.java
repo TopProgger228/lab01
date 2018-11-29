@@ -2,6 +2,7 @@ package analyzer;
 
 import sorters.AbstractSorter;
 import sorters.SortAnnotation;
+
 import static analyzer.AnalyzeUtils.*;
 
 import java.lang.reflect.Constructor;
@@ -22,7 +23,7 @@ public class SortsAnalyzer extends Analyzer {
 
         ArrayList<AbstractSorter> sortsObjects = new ArrayList<AbstractSorter>();
 
-        for (Class<? extends AbstractSorter> clazz : sortsArrayList){
+        for (Class<? extends AbstractSorter> clazz : sortsArrayList) {
             Constructor<? extends AbstractSorter> constructor = clazz.getConstructor();
             AbstractSorter object = constructor.newInstance();
 

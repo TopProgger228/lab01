@@ -1,4 +1,4 @@
 package sorters;
 
-abstract public class BubbleSorter extends AbstractSorter{
+abstract class BubbleSorter extends AbstractSorter {
 }

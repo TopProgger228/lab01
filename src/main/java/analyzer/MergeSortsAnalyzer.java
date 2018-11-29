@@ -6,7 +6,6 @@ import sorters.SortAnnotation;
 
 import static analyzer.AnalyzeUtils.*;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -24,7 +23,11 @@ public class MergeSortsAnalyzer extends Analyzer {
         ArrayList<Class<? extends AbstractSorter>> sortsArrayList = getSortsClasses(SortAnnotation.class,
                 subTypesSet);
 
+        ArrayList<Class<? extends AbstractSorter>> mergeSortsArrayList = getSortsClasses(MergeSortAnnotation.class,
+                subTypesSet);
+
         ArrayList<AbstractSorter> sortsObjects = new ArrayList<AbstractSorter>();
+        ArrayList<AbstractSorter> mergeSortsObjects = new ArrayList<AbstractSorter>();
 
         for (Class<? extends AbstractSorter> clazz : sortsArrayList){
             Constructor<? extends AbstractSorter> constructor = clazz.getConstructor();
@@ -32,5 +35,16 @@ public class MergeSortsAnalyzer extends Analyzer {
 
             sortsObjects.add(object);
         }
+
+        for (Class<? extends AbstractSorter> clazz : mergeSortsArrayList){
+            Constructor<? extends AbstractSorter> constructor = clazz.getConstructor(AbstractSorter.class);
+
+            for (AbstractSorter sortObject : sortsObjects){
+                AbstractSorter mergeSortObject = constructor.newInstance(sortObject);
+                mergeSortsObjects.add(mergeSortObject);
+            }
+        }
+
+        return mergeSortsObjects;
     }
 }

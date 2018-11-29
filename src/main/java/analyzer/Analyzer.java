@@ -4,8 +4,11 @@ import org.apache.commons.lang3.reflect.MethodUtils;
 import sorters.AbstractSorter;
 import static analyzer.AnalyzeUtils.*;
 import fillers.*;
+import sorters.MergeSortAnnotation;
+import sorters.SortAnnotation;
 
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,31 +22,59 @@ public abstract class Analyzer {
             InstantiationException, IllegalAccessException, InvocationTargetException;
 
     public void analyze() throws NoSuchMethodException,
-            InstantiationException, IllegalAccessException, InvocationTargetException{
+            InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchFieldException{
 
         ArrayList<AbstractSorter> objects = getSorts();
 
         Method[] fillers = getFillers();
 
-        for(Method method : fillers){
-            FillerAnnotation annotation = method.getAnnotation(FillerAnnotation.class);
-            System.out.println(annotation.nameOfFiller());
+        if (objects.get(0).getClass().isAnnotationPresent(SortAnnotation.class)){
+            for(Method method : fillers){
+                FillerAnnotation annotation = method.getAnnotation(FillerAnnotation.class);
+                System.out.println(annotation.nameOfFiller());
 
-            Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), 10);
-            int[] array = (int[]) arrayObject;
+                Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), 10);
+                int[] array = (int[]) arrayObject;
 
-            System.out.println("Unsorted array:" + " " + Arrays.toString(array));
+                System.out.println("Unsorted array:" + " " + Arrays.toString(array));
 
-            for (AbstractSorter object : objects){
-                System.out.println("Sort type:" + " " + object.getClass().getName());
+                for (AbstractSorter object : objects){
+                    SortAnnotation sortAnnotation = object.getClass().getAnnotation(SortAnnotation.class);
+                    System.out.println("Sort type:" + " " + sortAnnotation.nameOfSort());
 
-                object.sort(array);
+                    object.sort(array);
 
-                System.out.println("Sorted array:" + " " + Arrays.toString(array));
+                    System.out.println("Sorted array:" + " " + Arrays.toString(array));
+                }
+            }
+        }else if (objects.get(0).getClass().isAnnotationPresent(MergeSortAnnotation.class)){
+            for (Method method : fillers){
+                FillerAnnotation annotation = method.getAnnotation(FillerAnnotation.class);
+                System.out.println(annotation.nameOfFiller());
+
+                Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), 10);
+                int[] array = (int[]) arrayObject;
+
+                System.out.println("Unsorted array:" + " " + Arrays.toString(array));
+
+                for (AbstractSorter object : objects){
+                    Field field = object.getClass().getDeclaredField("sortTypeForMergeSort");
+                    field.setAccessible(true);
+
+                    AbstractSorter fieldValue = (AbstractSorter) field.get(object);
+
+                    SortAnnotation sortAnnotation = fieldValue.getClass().getAnnotation(SortAnnotation.class);
+                    MergeSortAnnotation mergeSortAnnotation = object.getClass().
+                            getAnnotation(MergeSortAnnotation.class);
+
+                    System.out.println(mergeSortAnnotation.name() + " " + "with" + " " + sortAnnotation.nameOfSort());
+
+                    object.sort(array);
+
+                    System.out.println("Sorted array:" + " " + Arrays.toString(array));
+                }
             }
         }
-
-
     }
 
     public static int[] generateArraySizes(int amount){

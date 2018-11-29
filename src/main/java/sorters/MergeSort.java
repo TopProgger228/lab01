@@ -1,7 +1,7 @@
 package sorters;
 
 @MergeSortAnnotation(name = "Merge sort")
-public final class MergeSort extends AbstractSorter {
+public class MergeSort extends AbstractSorter {
     private AbstractSorter sortTypeForMergeSort;
 
     public MergeSort(AbstractSorter sortTypeForMergeSort) {

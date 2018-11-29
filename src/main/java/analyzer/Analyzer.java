@@ -1,5 +1,6 @@
 package analyzer;
 
+import exceptions.WrongRepeatAmount;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import sorters.AbstractSorter;
 import static analyzer.AnalyzeUtils.*;
@@ -21,7 +22,20 @@ public abstract class Analyzer {
     abstract public ArrayList<AbstractSorter> getSorts() throws NoSuchMethodException,
             InstantiationException, IllegalAccessException, InvocationTargetException;
 
-    public void analyze() throws NoSuchMethodException,
+    public void doAnalyzeMore(int amount) throws NoSuchMethodException,InstantiationException, IllegalAccessException,
+            InvocationTargetException, NoSuchFieldException, WrongRepeatAmount{
+        if (amount > 0){
+            int[] array = generateArraySizes(amount);
+
+            for (int arraySize : array){
+                analyze(arraySize);
+            }
+        }else {
+            throw new WrongRepeatAmount();
+        }
+    }
+
+    private void analyze(int arraySize) throws NoSuchMethodException,
             InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchFieldException{
 
         ArrayList<AbstractSorter> objects = getSorts();
@@ -33,7 +47,7 @@ public abstract class Analyzer {
                 FillerAnnotation annotation = method.getAnnotation(FillerAnnotation.class);
                 System.out.println(annotation.nameOfFiller());
 
-                Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), 10);
+                Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), arraySize);
                 int[] array = (int[]) arrayObject;
 
                 System.out.println("Unsorted array:" + " " + Arrays.toString(array));
@@ -52,7 +66,7 @@ public abstract class Analyzer {
                 FillerAnnotation annotation = method.getAnnotation(FillerAnnotation.class);
                 System.out.println(annotation.nameOfFiller());
 
-                Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), 10);
+                Object arrayObject = MethodUtils.invokeStaticMethod(Fillers.class, method.getName(), arraySize);
                 int[] array = (int[]) arrayObject;
 
                 System.out.println("Unsorted array:" + " " + Arrays.toString(array));
@@ -77,13 +91,13 @@ public abstract class Analyzer {
         }
     }
 
-    public static int[] generateArraySizes(int amount){
+    private static int[] generateArraySizes(int amount){
         Random random = new Random();
 
         int[] array = new int[amount];
 
         for (int i = 0; i < amount; i++){
-            int elem = random.nextInt(100) + 2;
+            int elem = random.nextInt(10) + 2;
             array[i] = elem;
         }
 

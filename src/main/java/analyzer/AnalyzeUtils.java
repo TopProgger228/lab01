@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-public final class AnalyzeUtils {
-    private AnalyzeUtils(){
+final class AnalyzeUtils {
+    private AnalyzeUtils() {
 
     }
 
@@ -35,17 +35,17 @@ public final class AnalyzeUtils {
         }
     }
 
-    public static Method[] getFillers(){
+    static Method[] getFillers() {
         return MethodUtils.getMethodsWithAnnotation(Fillers.class, FillerAnnotation.class);
     }
 
     static ArrayList<Class<? extends AbstractSorter>> getSortsClasses(Class<? extends Annotation> annotation,
-                                                                      Set<Class<? extends AbstractSorter>> set){
+                                                                      Set<Class<? extends AbstractSorter>> set) {
         ArrayList<Class<? extends AbstractSorter>> sortsArrayList =
                 new ArrayList<Class<? extends AbstractSorter>>();
 
-        for (Class<? extends AbstractSorter> clazz : set){
-            if (clazz.isAnnotationPresent(annotation)){
+        for (Class<? extends AbstractSorter> clazz : set) {
+            if (clazz.isAnnotationPresent(annotation)) {
                 sortsArrayList.add(clazz);
             }
         }

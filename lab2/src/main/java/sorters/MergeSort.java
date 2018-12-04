@@ -28,7 +28,7 @@ public class MergeSort implements Sort {
      * Overrided version of {@link sorters.Sort#sort(int[])} method.
      * Takes @param array, array of integers, which user want to sort.
      */
-    @Override
+
     public void sort(int[] array) {
         if (getDivideCriterion(array)) {
             int[] firstPart;
@@ -49,7 +49,7 @@ public class MergeSort implements Sort {
     /**
      * @return name of sort.
      */
-    @Override
+
     public String getSortName() {
         return "Merge sort";
     }

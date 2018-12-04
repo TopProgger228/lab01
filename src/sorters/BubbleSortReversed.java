@@ -14,7 +14,7 @@ public final class BubbleSortReversed implements Sort {
      * This method sorts array using bubble sort algorithm, but current element goes down.
      * Takes @param array, array of integers, which user want to sort.
      */
-
+    @Override
     public void sort(int[] array) {
         for (int i = array.length - 1; i > 0; i--) {
             for (int j = i - 1; j >= 0; j--) {
@@ -30,7 +30,7 @@ public final class BubbleSortReversed implements Sort {
     /**
      * @return name of sort.
      */
-
+    @Override
     public String getSortName() {
         return "Reversed bubble sort";
     }

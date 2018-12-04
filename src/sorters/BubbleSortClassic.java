@@ -14,7 +14,7 @@ public final class BubbleSortClassic implements Sort {
      * This method sorts array using bubble sort algorithm.
      * Takes @param array, array of integers, which user want to sort.
      */
-
+    @Override
     public void sort(int[] array) {
         for (int i = 0; i < (array.length - 1); i++) {
             for (int j = i + 1; j < array.length; j++) {
@@ -30,7 +30,7 @@ public final class BubbleSortClassic implements Sort {
     /**
      * @return name of sort.
      */
-
+    @Override
     public String getSortName() {
         return "Classic bubble sort";
     }

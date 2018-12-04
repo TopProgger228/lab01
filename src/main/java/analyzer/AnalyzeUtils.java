@@ -5,6 +5,8 @@ import fillers.Fillers;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.reflections.Reflections;
 import sorters.AbstractSorter;
+import sorters.MergeSortAnnotation;
+import sorters.SortAnnotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -39,17 +41,29 @@ final class AnalyzeUtils {
         return MethodUtils.getMethodsWithAnnotation(Fillers.class, FillerAnnotation.class);
     }
 
-    static ArrayList<Class<? extends AbstractSorter>> getSortsClasses(Class<? extends Annotation> annotation,
-                                                                      Set<Class<? extends AbstractSorter>> set) {
+    static ArrayList<Class<? extends AbstractSorter>> getSortsClasses(Set<Class<? extends AbstractSorter>> set) {
         ArrayList<Class<? extends AbstractSorter>> sortsArrayList =
                 new ArrayList<Class<? extends AbstractSorter>>();
 
         for (Class<? extends AbstractSorter> clazz : set) {
-            if (clazz.isAnnotationPresent(annotation)) {
+            if (clazz.isAnnotationPresent(SortAnnotation.class)) {
                 sortsArrayList.add(clazz);
             }
         }
 
         return sortsArrayList;
+    }
+
+    static Class<? extends AbstractSorter> getMergeSortClass(Set<Class<? extends AbstractSorter>> set){
+        Class<? extends AbstractSorter> mergeSortClass = null;
+
+        for (Class<? extends AbstractSorter> clazz : set){
+            if (clazz.isAnnotationPresent(MergeSortAnnotation.class)){
+                mergeSortClass = clazz;
+                break;
+            }
+        }
+
+        return mergeSortClass;
     }
 }

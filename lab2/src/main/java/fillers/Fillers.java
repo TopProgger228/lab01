@@ -38,7 +38,7 @@ public class Fillers implements Filler {
      *
      * @return sorted array of integers.
      */
-    @Override
+
     public int[] generateSortedArray() {
         int[] array = new int[arraySize];
 
@@ -58,7 +58,7 @@ public class Fillers implements Filler {
      *
      * @return sorted array of integers with added element.
      */
-    @Override
+
     public int[] generateSortedArrayWithAddedElement() {
         int[] array = new int[arraySize + 1];
 
@@ -100,7 +100,7 @@ public class Fillers implements Filler {
      *
      * @return reversed sorted array of integers.
      */
-    @Override
+
     public int[] generateReversedArray() {
         Fillers filler = new Fillers(arraySize);
 
@@ -125,7 +125,7 @@ public class Fillers implements Filler {
      *
      * @return array of pseudorandom integers.
      */
-    @Override
+
     public int[] generateRandomArray() {
         int[] array = new int[arraySize];
 

@@ -15,7 +15,7 @@ public final class QuickSort implements Sort {
      * Takes @param array, array of integers, which user want to sort.
      * Invokes auxiliary method {@link sorters.QuickSort#doSort(int[], int, int)}.
      */
-    @Override
+
     public void sort(int[] array) {
         int startIndex = 0;
         int endIndex = array.length - 1;
@@ -25,7 +25,7 @@ public final class QuickSort implements Sort {
     /**
      * @return name of sort.
      */
-    @Override
+
     public String getSortName() {
         return "Quick sort";
     }

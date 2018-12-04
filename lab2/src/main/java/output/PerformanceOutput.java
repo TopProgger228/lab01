@@ -24,10 +24,10 @@ public class PerformanceOutput implements Outputer {
      * Method checks type of sort @param sortType and display information.
      * Invokes auxiliary method {@link PerformanceOutput#getPerformanceInfo(Sort)}.
      */
-    @Override
+
     public void output(Sort sortType) {
         if (sortType instanceof MergeSort) {
-            var sortName = ((MergeSort) sortType).getSortTypeForMergeSort().getClass().getName();
+            String sortName = ((MergeSort) sortType).getSortTypeForMergeSort().getClass().getName();
             System.out.println("Performance of" + " " + sortType.getSortName() + " " + "with" + " " +
                     sortName + "\n" + "\n");
             getPerformanceInfo(sortType);

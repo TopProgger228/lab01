@@ -28,7 +28,7 @@ public class SortAnalyzer implements Analyzer {
      *
      * @return time in nanoseconds.
      */
-    @Override
+
     public long getPerformanceForSortedArray(Sort sortType) {
         long startTime = System.nanoTime();
         sortType.sort(filler.generateSortedArray());
@@ -44,7 +44,7 @@ public class SortAnalyzer implements Analyzer {
      *
      * @return time in nanoseconds.
      */
-    @Override
+
     public long getPerformanceForArrayWithAddedElement(Sort sortType) {
         long startTime = System.nanoTime();
         sortType.sort(filler.generateSortedArrayWithAddedElement());
@@ -59,7 +59,7 @@ public class SortAnalyzer implements Analyzer {
      *
      * @return time in nanoseconds.
      */
-    @Override
+
     public long getPerformanceForReversedArray(Sort sortType) {
         long startTime = System.nanoTime();
         sortType.sort(filler.generateReversedArray());
@@ -74,7 +74,7 @@ public class SortAnalyzer implements Analyzer {
      *
      * @return time in nanoseconds.
      */
-    @Override
+
     public long getPerformanceForRandomArray(Sort sortType) {
         long startTime = System.nanoTime();
         sortType.sort(filler.generateRandomArray());

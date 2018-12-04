@@ -16,7 +16,7 @@ public class BuiltInSort implements Sort {
      * This method invokes {@link Arrays#sort(int[])} method from {@link Arrays} class.
      * Takes @param array, array of integers, which user want to sort.
      */
-    @Override
+
     public void sort(int[] array) {
         Arrays.sort(array);
     }
@@ -24,7 +24,7 @@ public class BuiltInSort implements Sort {
     /**
      * @return name of sort.
      */
-    @Override
+
     public String getSortName() {
         return "Built-in sort";
     }

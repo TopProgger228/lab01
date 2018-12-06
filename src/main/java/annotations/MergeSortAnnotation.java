@@ -1,4 +1,4 @@
-package sorters;
+package annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * <b>MergeSortAnnotation</b> is special annotation, that used to mark Merge sort classes.
+ *
  * @author Dmytro Pylypiuk
  * @version 1.0
  */
@@ -14,7 +15,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface MergeSortAnnotation {
     /**
-     *
      * @return name of Merge sort.
      */
     String name();

@@ -1,12 +1,13 @@
 package sorters;
 
+import annotations.SortAnnotation;
 import exceptions.EmptyArrayException;
 
 /**
  * <b>QuickSort</b> class that extends {@link sorters.AbstractSorter} class.
- * This class presents quicksort (Hoare algorithm) realization.
- * Class is declared as final.
- * Class annotated by {@link SortAnnotation} annotation.
+ * <br>This class presents quicksort (Hoare algorithm) realization.</br>
+ * <br>Class is declared as final.</br>
+ * <br>Class annotated by {@link SortAnnotation} annotation.</br>
  *
  * @author Dmytro Pylypiuk
  * @version 1.0
@@ -16,16 +17,17 @@ public final class QuickSort extends AbstractSorter {
     /**
      * Overrided version of {@link sorters.AbstractSorter#sort(int[])} method.
      * This method sorts array using quicksort.
-     * Takes @param array, array of integers, which user want to sort.
-     * Invokes auxiliary method {@link sorters.QuickSort#doSort(int[], int, int)}.
+     *
+     * @param array array of integers, which user want to sort.
+     *              Invokes auxiliary method {@link sorters.QuickSort#doSort(int[], int, int)}.
      */
     @Override
     public void sort(int[] array) throws EmptyArrayException {
-        if (array.length > 0){
+        if (array.length > 0) {
             int startIndex = 0;
             int endIndex = array.length - 1;
             doSort(array, startIndex, endIndex);
-        }else {
+        } else {
             throw new EmptyArrayException();
         }
     }
@@ -33,9 +35,10 @@ public final class QuickSort extends AbstractSorter {
     /**
      * Auxiliary method for {@link sorters.QuickSort#sort(int[])} method.
      * Contains logic of quicksort algorithm.
-     * Takes @param array, array of integers, which user want to sort.
-     * Parameter @param start is first index of array.
-     * Parameter @param end is last index of array.
+     *
+     * @param array array of integers, which user want to sort.
+     * @param start first index of array.
+     * @param end   last index of array.
      */
     private static void doSort(int[] array, int start, int end) {
         if (start >= end)

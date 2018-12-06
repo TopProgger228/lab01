@@ -47,11 +47,13 @@ public class Fillers {
         if (arraySize > 0) {
             int[] array = new int[arraySize];
 
-            for (int i = 0; i < array.length; i++) {
-                array[i] = random.nextInt(200 + 1 - 50) - 50;
+            int randomNumber = (random.nextInt(10) + 1);
+            array[0] = (random.nextInt(200 + 1 - 50) - 50);
+
+            for (int i = 1; i < array.length; i++) {
+                array[i] = array[i - 1] + randomNumber;
             }
 
-            Arrays.sort(array);
             return array;
         } else {
             throw new WrongArraySize();
@@ -72,11 +74,13 @@ public class Fillers {
         if (arraySize > 0) {
             int[] array = new int[arraySize + 1];
 
-            for (int i = 0; i < array.length - 1; i++) {
-                array[i] = random.nextInt(200 + 1 - 50) - 50;
+            int randomNumber = (random.nextInt(10) + 1);
+            array[0] = (random.nextInt(200 + 1 - 50) - 50);
+
+            for (int i = 1; i < array.length; i++) {
+                array[i] = array[i - 1] + randomNumber;
             }
 
-            Arrays.sort(array);
             array[array.length - 1] = random.nextInt(200 + 1 - 50) - 50;
 
             return array;

@@ -45,7 +45,9 @@ final class AnalyzeUtils {
      */
     static Set<Class<? extends AbstractSorter>> getSubTypes() {
         Reflections reflections = new Reflections("sorters");
-        return reflections.getSubTypesOf(AbstractSorter.class);
+        Set<Class<? extends AbstractSorter>> set = reflections.getSubTypesOf(AbstractSorter.class);
+        excludeAbstractClasses(set);
+        return set;
     }
 
     /**
@@ -53,7 +55,7 @@ final class AnalyzeUtils {
      *
      * @param subTypes set of subtypes.
      */
-    static void excludeAbstractClasses(Set<Class<? extends AbstractSorter>> subTypes) {
+    private static void excludeAbstractClasses(Set<Class<? extends AbstractSorter>> subTypes) {
         Iterator<Class<? extends AbstractSorter>> iterator = subTypes.iterator();
 
         while (iterator.hasNext()) {

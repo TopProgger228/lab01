@@ -75,7 +75,6 @@ public class SortAnalyzer extends Analyzer {
     public void analyze(int arraySize) throws NoSuchMethodException, InstantiationException,
             IllegalAccessException, InvocationTargetException, NoSuchFieldException, EmptyArrayException {
         Set<Class<? extends AbstractSorter>> subTypesSet = getSubTypes();
-        excludeAbstractClasses(subTypesSet);
 
         Method[] fillersMethod = getFillers();
 
@@ -160,13 +159,6 @@ public class SortAnalyzer extends Analyzer {
     private Constructor<? extends AbstractSorter> getMergeSortConstructor(Class<? extends AbstractSorter> clazz)
             throws NoSuchMethodException {
         return clazz.getConstructor(AbstractSorter.class);
-    }
-
-    private AbstractSorter getMergeSortObject(Class<? extends AbstractSorter> classForObject,
-                                              Class<? extends AbstractSorter> sortClassParam)
-            throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        Constructor<? extends AbstractSorter> constructor = getMergeSortConstructor(classForObject);
-        return constructor.newInstance(sortClassParam);
     }
 
     /**

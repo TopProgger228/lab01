@@ -23,8 +23,10 @@ public final class BubbleSortClassic extends BubbleSorter {
     @Override
     public void sort(int[] array) throws EmptyArrayException {
         if (array.length > 0) {
-            for (int i = 0; i < (array.length - 1); i++) {
-                for (int j = i + 1; j < array.length; j++) {
+            for (int i = getIterForOuterLoop(array.length); checkConditionForOuterLoop(i, array.length);
+                 i = geNextIteration(i)) {
+                for (int j = getIterForNestedLoop(i); checkConditionForNestedLoop(j, array.length);
+                     j = geNextIteration(j)) {
                     swap(array, array[i], i, array[j], j);
                 }
             }
@@ -33,21 +35,32 @@ public final class BubbleSortClassic extends BubbleSorter {
         }
     }
 
-    /**
-     * Method swaps elements in array.
-     *
-     * @param array           reference on array.
-     * @param firstElem       value of first element.
-     * @param firstElemIndex  index of first element.
-     * @param secondElem      value of second element.
-     * @param secondElemIndex index of second element.
-     * @since 1.1
-     */
     @Override
-    void swap(int[] array, int firstElem, int firstElemIndex, int secondElem, int secondElemIndex) {
-        if (firstElem > secondElem) {
-            array[firstElemIndex] = secondElem;
-            array[secondElemIndex] = firstElem;
-        }
+    int geNextIteration(int iter) {
+        return ++iter;
+    }
+
+    @Override
+    int getIterForOuterLoop(int arraySize) {
+        return 0;
+    }
+
+    @Override
+    int getIterForNestedLoop(int i) {
+        return i + 1;
+    }
+
+    @Override
+    boolean checkConditionForOuterLoop(int i, int arraySize) {
+        if (i < (arraySize - 1)) {
+            return true;
+        } else return false;
+    }
+
+    @Override
+    boolean checkConditionForNestedLoop(int i, int arraySize) {
+        if (i < arraySize) {
+            return true;
+        } else return false;
     }
 }

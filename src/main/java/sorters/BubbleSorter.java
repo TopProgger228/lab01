@@ -1,5 +1,7 @@
 package sorters;
 
+import exceptions.EmptyArrayException;
+
 /**
  * Abstract class <b>BubbleSorter</b> presents template for bubble sort realizations.
  * <br>Class extends another abstract class <b>AbstractSorter</b> </br>
@@ -9,9 +11,24 @@ package sorters;
  * @author Dmytro Pylypiuk
  * @version 1.1
  */
-abstract class BubbleSorter extends AbstractSorter {
+abstract public class BubbleSorter extends AbstractSorter {
+    @Override
+    public void sort(int[] array) throws EmptyArrayException {
+        if (array.length > 0) {
+            for (int i = getIterForOuterLoop(array.length); checkConditionForOuterLoop(i, array.length);
+                 i = geNextIteration(i)) {
+                for (int j = getIterForNestedLoop(i); checkConditionForNestedLoop(j, array.length);
+                     j = geNextIteration(j)) {
+                    swap(array, array[i], i, array[j], j);
+                }
+            }
+        } else {
+            throw new EmptyArrayException();
+        }
+    }
+
     /**
-     * This abstract method should be overrided in all classes extends <b>BubbleSorter</b>.
+     * Method swaps two elements in array.
      *
      * @param array           reference on array.
      * @param firstElem       value of first element.
@@ -19,5 +36,20 @@ abstract class BubbleSorter extends AbstractSorter {
      * @param secondElem      value of second element.
      * @param secondElemIndex index of second element.
      */
-    abstract void swap(int[] array, int firstElem, int firstElemIndex, int secondElem, int secondElemIndex);
+    void swap(int[] array, int firstElem, int firstElemIndex, int secondElem, int secondElemIndex) {
+        if (firstElem > secondElem) {
+            array[firstElemIndex] = secondElem;
+            array[secondElemIndex] = firstElem;
+        }
+    }
+
+    abstract int geNextIteration(int iter);
+
+    abstract int getIterForOuterLoop(int arraySize);
+
+    abstract int getIterForNestedLoop(int i);
+
+    abstract boolean checkConditionForOuterLoop(int i, int arraySize);
+
+    abstract boolean checkConditionForNestedLoop(int i, int arraySize);
 }

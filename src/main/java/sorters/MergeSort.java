@@ -12,9 +12,10 @@ import exceptions.EmptyArrayException;
  * {@link BubbleSortReversed}, {@link QuickSort}, {@link BuiltInSort}.</br>
  * <br>Class is not declared as final for possible extension.</br>
  * <br>Class is annotated by {@link SortAnnotation} annotation.</br>
+ * <br>From version 1.4 Merge sort is multithreaded. It helps increase performance.</br>
  *
  * @author Dmytro Pylypyuk.
- * @version 1.3
+ * @version 1.4
  */
 @MergeSortAnnotation(name = "Merge sort")
 public final class MergeSort extends AbstractSorter {
@@ -34,26 +35,40 @@ public final class MergeSort extends AbstractSorter {
      */
 
     @Override
-    public void sort(int[] array) throws EmptyArrayException {
+    public void sort(int[] array) {
         MultiThreadedMergeSort multiThreadedMergeSort = new MultiThreadedMergeSort(array);
         multiThreadedMergeSort.start();
 
         try {
             multiThreadedMergeSort.join();
-        }catch (InterruptedException ex){
+        } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
     }
 
-    class MultiThreadedMergeSort extends Thread{
+    /**
+     * Inner class that extends {@link Thread} and contains realization of multithreaded Merge sort.
+     */
+    class MultiThreadedMergeSort extends Thread {
+        /**
+         * Value of AVAILABLE_PROCESSORS depends on cores amount in user`s personal computer.
+         */
         private final int AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
         private int[] array;
         private int[] resultArray;
 
-        MultiThreadedMergeSort(int[] array){
+        /**
+         * Constructor takes unsorted array of integers.
+         *
+         * @param array array that will be sorted.
+         */
+        MultiThreadedMergeSort(int[] array) {
             this.array = array;
         }
 
+        /**
+         * Overrided version of {@link Thread#run()} method. Contains behavior of multithreaded Merge sort.
+         */
         @Override
         public void run() {
             if (array.length <= 1) {
@@ -82,7 +97,7 @@ public final class MergeSort extends AbstractSorter {
                     try {
                         sortTypeForMergeSort.sort(firstPart);
                         sortTypeForMergeSort.sort(secondPart);
-                    }catch (EmptyArrayException ex){
+                    } catch (EmptyArrayException ex) {
                         ex.printStackTrace();
                     }
 
@@ -90,6 +105,15 @@ public final class MergeSort extends AbstractSorter {
                 }
             }
         }
+
+        /**
+         * Auxiliary method for array division.
+         *
+         * @param array        array of integers, which user want to sort.
+         * @param partToReturn method use it to choose part of divided array. Should equals 1 or 2.
+         *                     If @param partToReturn not equals 1 or 2 method returns array back.
+         * @return part of divided array.
+         */
 
         private int[] divideArray(int[] array, int partToReturn) {
             int middle;
@@ -121,6 +145,12 @@ public final class MergeSort extends AbstractSorter {
             } else return new int[0];
         }
 
+        /**
+         * Auxiliary method for array`s parts merging.
+         *
+         * @param firstPart  is first part of array.
+         * @param secondPart is second part of array.
+         */
         private void merge(int[] firstPart, int[] secondPart) {
             resultArray = new int[array.length];
 

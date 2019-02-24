@@ -6,7 +6,7 @@ public class Main {
 
         try {
             excelAnalyzer.analyze(10);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
